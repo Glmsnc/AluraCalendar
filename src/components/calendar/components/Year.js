@@ -6,7 +6,7 @@ export default class Year extends Component {
     render() {
       return (
           <div>
-              <h1> Ano 1</h1>
+              <h1> {this.props.year} </h1>
             
           </div>
       )

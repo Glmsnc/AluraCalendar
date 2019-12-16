@@ -5,7 +5,7 @@ import {getCalendarMonth, weekDays} from '../../utils/date/date';
 
 export default class Calendar extends Component {
     date = new Date();
-
+    year = this.date.getFullYear();
     constructor(){
         super();
         this.date = getCalendarMonth(new Date());
@@ -15,7 +15,7 @@ export default class Calendar extends Component {
         
       return (
           <div>
-              <Year/>
+              <Year year={this.year}/>
               <Month date={this.date.actual}/>
           </div>
       )
