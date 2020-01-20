@@ -1,0 +1,61 @@
+
+.semana-dias{
+    display: inline-flex;
+    flex-direction: row;
+    width: 60%;
+    justify-content: space-between;
+}
+
+.semana-dia{
+    width: 14.28571428571429%;
+}
+
+.dias-do-mes{
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+    padding: 10px;
+    width: 60%;
+}
+
+.dia{
+    text-align: center;
+    width: 14.28571428571429%;
+}
+
+.Mes
+{
+    display:table;
+    margin:1em 1em 0;
+    border-spacing:0;
+    border-collapse:collapse;
+}
+
+.semana{
+    padding-bottom: 5px;
+    display:flex;
+    flex-direction: row;
+}
+.grid{
+    display:flex;
+    justify-content: center;
+    width: 100%;
+}
+.calendario-mes{
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    justify-content: center;
+
+}
+.Meses{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center
+}
+
+
+
+.ano{
+    width: 33%;
+}

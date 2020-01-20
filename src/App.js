@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import './App.css';
-import Calendar from './components/calendar/Calendar';
+import Calendario from './components/Calendario';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-       <Calendar/>
-      </div>
+      <React.Fragment>
+       <Calendario/>
+      </React.Fragment>
     );
   }
 }
