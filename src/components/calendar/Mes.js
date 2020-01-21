@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
-import Dia from './Dia'
 import {diasDaSemana} from '../../controller/calendarController';
 import './style.css';
 
 const DiaSemana = styled.span`
 width: 14.28571428571429%;
 `
-  
+const Dia = styled.span`
+    text-align: center;
+    width: 14.28571428571429%;
+`
+
 export default class Mes extends Component {
     constructor(){
         super()
@@ -30,24 +33,24 @@ export default class Mes extends Component {
         console.log(this.props)
         return (
             <React.Fragment >
-                <div className="Meses">
+                <section className="Meses">
                 <h1>{this.props.date.mes}</h1>
-                </div>
-                <div className="calendario-mes">
+                </section>
+                <section className="calendario-mes">
                     <div className="grid">
                         <div className="semana-dias">
                             {   
-                                diasDaSemana.map( weekDia => <DiaSemana>{ this.state.lessLetter ? weekDia : weekDia.substring(0,3)} </DiaSemana>) 
+                                diasDaSemana.map( weekDia => <DiaSemana key={weekDia}>{ this.state.lessLetter ? weekDia : weekDia.substring(0,3)} </DiaSemana>) 
                             }
                         </div>
                     </div>
                     <div className="grid">
                         <div className="dias-do-mes">
                             {
-                                semanas.map( (item) => (
-                                        <div className="semana">
+                                semanas.map( (item, index) => (
+                                        <div key={index} className="semana">
                                             {
-                                                item.dias.map(item =>  <Dia dia={item.dia} /> )
+                                                item.dias.map(item =>  <Dia key={item.dia} >{item.dia}  </Dia> )
                                             }
                                         </div>
                                     )
@@ -55,7 +58,7 @@ export default class Mes extends Component {
                             }
                         </div>
                     </div>
-                </div>
+                </section>
             </React.Fragment>
       )
     }
