@@ -30,10 +30,10 @@ export default class Mes extends Component {
         console.log(this.props)
         return (
             <React.Fragment >
-                <div className="Meses">
-                <h1>{this.props.date.mes}</h1>
-                </div>
-                <div className="calendario-mes">
+                <section className="Meses">
+                <h2>{this.props.date.mes}</h2>
+                </section>
+                <section className="calendario-mes">
                     <div className="grid">
                         <div className="semana-dias">
                             {   
@@ -55,7 +55,7 @@ export default class Mes extends Component {
                             }
                         </div>
                     </div>
-                </div>
+                </section>
             </React.Fragment>
       )
     }
