@@ -73,3 +73,9 @@ export function getCalendario(data){
     const prox = proxMes(data);
     return {ant, atual, prox};
 }
+
+ export function mudaAno(ano, dataAnterior){
+   const NovaData = new Date(dataAnterior);
+   NovaData.setYear(ano);
+    return getCalendario(NovaData);
+ }
