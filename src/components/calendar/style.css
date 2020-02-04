@@ -1,13 +1,6 @@
 
-.semana-dias{
-    display: inline-flex;
-    flex-direction: row;
-    width: 60%;
-    justify-content: space-between;
-}
-
 .semana-dia{
-    width: 14.28571428571429%;
+    width: 14.3%;
 }
 
 .dias-do-mes{
@@ -20,7 +13,7 @@
 
 .dia{
     text-align: center;
-    width: 14.28571428571429%;
+    width: 14.3%;
 }
 
 .Mes
@@ -31,11 +24,6 @@
     border-collapse:collapse;
 }
 
-.semana{
-    padding-bottom: 5px;
-    display:flex;
-    flex-direction: row;
-}
 .grid{
     display:flex;
     justify-content: center;
@@ -61,30 +49,26 @@
 }
 .fade-enter {
     opacity: 0.01;
+    transform: translateX(20px);
   }
   
   .fade-enter.fade-enter-active {
     opacity: 1;
-    transition: opacity 500ms ease-in;
+    transition: opacity 300ms ease-in;
+    transform: translateX(0px);
   }
   
   .fade-leave {
     opacity: 1;
+    transform: translateX(0px);
   }
   
   .fade-leave.fade-leave-active {
     opacity: 0.01;
     transition: opacity 300ms ease-in;
+    transform: translateX(-20px);
   }
 
-.example-appear {
-    opacity: 0.01;
-  }
-  
-  .example-appear.example-appear-active {
-    opacity: 1;
-    transition: opacity .5s ease-in;
-  }
 
 
   

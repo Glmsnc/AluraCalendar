@@ -56,26 +56,16 @@ function dateToObj(data){
 //getMountedMonth(date);
 
 
-function proxMes(data){
-    data = new Date(data.getFullYear(), data.getMonth()+1);
-    return getMesPronto(data)
-}
-
-function antMes(data){
-    data = new Date(data.getFullYear(), data.getMonth()-1);
- return   getMesPronto(data)
-}
 
 
 export function getCalendario(data){
-    const atual = getMesPronto(data);
-    const ant = antMes(data);
-    const prox = proxMes(data);
-    return {ant, atual, prox};
+    const calendario = getMesPronto(data);
+    return {ano: data.getFullYear(), calendario}
 }
 
  export function mudaAno(ano, dataAnterior){
-   const NovaData = new Date(dataAnterior);
-   NovaData.setYear(ano);
-    return getCalendario(NovaData);
+     console.log('dataAnterior',dataAnterior)
+   const novaData = new Date(dataAnterior);
+   novaData.setYear(ano);
+    return getCalendario(novaData);
  }

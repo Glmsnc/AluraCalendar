@@ -4,28 +4,16 @@ import {getCalendario, mudaAno} from '../controller/calendarController';
 import styled from 'styled-components';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-const Ano = styled.button`
-width: 33%;
-background: none;
-    border: none;
-    font-size: 2em;
-    padding-right:40px;
-    padding-left:40px;
-`
-const Anos = styled.div`
-display: flex;
-flex-direction: inline; 
-width:  100%;
-justify-content:center;
-`
-
 export default class Calendario extends Component {
-    date = new Date();
     
     constructor(){  
         super();
-        this.state = ({ano: this.date.getFullYear(), Animation: true,})
+      
         this.date = getCalendario(new Date());
+        this.state = ({
+            ano: this.date.ano,
+            Animation: true,
+          })
     }
     anoDirecao = (lado)=>{
       this.setState({Animation: !this.state.Animation});
@@ -33,7 +21,8 @@ export default class Calendario extends Component {
         this.setState({ano:  this.state.ano +lado});
         this.setState({Animation: !this.state.Animation});
       },500)
-    this.date = mudaAno(this.state.ano +lado)
+    const {calendario} = this.date;
+    this.date = mudaAno(this.state.ano+lado, calendario)
 
     } 
     render() {
@@ -53,9 +42,26 @@ export default class Calendario extends Component {
       
               <Ano  onClick={()=>this.anoDirecao(+1)}> {this.state.ano+1}&#8594;</Ano>
           </Anos>
-              <Mes date={this.date.atual}/>
+              <Mes date={this.date}/>
         </React.Fragment>
       )
     }
 
 }
+
+
+
+const Ano = styled.button`
+  width: 33%;
+  background: none;
+  border: none;
+  font-size: 2em;
+  padding-right:40px;
+  padding-left:40px;
+`
+const Anos = styled.div`
+  display: flex;
+  flex-direction: inline; 
+  width:  100%;
+  justify-content:center;
+`

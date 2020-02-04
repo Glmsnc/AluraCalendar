@@ -3,14 +3,6 @@ import styled from 'styled-components'
 import {diasDaSemana} from '../../controller/calendarController';
 import './style.css';
 
-const DiaSemana = styled.span`
-width: 14.28571428571429%;
-`
-const Dia = styled.span`
-    text-align: center;
-    width: 14.28571428571429%;
-`
-
 export default class Mes extends Component {
     constructor(){
         super()
@@ -29,34 +21,35 @@ export default class Mes extends Component {
     }
 
     render() {
-        const {semanas} =this.props.date;
+        console.log('render',this.props)
+        const {semanas} =this.props.date.calendario;
         console.log(this.props)
         return (
             <React.Fragment >
                 <section className="Meses">
-                <h1>{this.props.date.mes}</h1>
+                <h1>{this.props.date.calendario.mes}</h1>
                 </section>
                 <section className="calendario-mes">
                     <div className="grid">
-                        <div className="semana-dias">
+                        <SemanaDias>
                             {   
-                                diasDaSemana.map( weekDia => <DiaSemana key={weekDia}>{ this.state.lessLetter ? weekDia : weekDia.substring(0,3)} </DiaSemana>) 
+                                diasDaSemana.map( diaSemana => <DiaSemana key={diaSemana}>{ this.state.lessLetter ? diaSemana : diaSemana.substring(0,3)} </DiaSemana>) 
                             }
-                        </div>
+                        </SemanaDias>
                     </div>
                     <div className="grid">
-                        <div className="dias-do-mes">
+                        <DiasDoMes>
                             {
-                                semanas.map( (item, index) => (
-                                        <div key={index} className="semana">
+                                semanas.map( (item) => (
+                                        <Semana>
                                             {
                                                 item.dias.map(item =>  <Dia key={item.dia} >{item.dia}  </Dia> )
                                             }
-                                        </div>
+                                        </Semana>
                                     )
                                 )
                             }
-                        </div>
+                        </DiasDoMes>
                     </div>
                 </section>
             </React.Fragment>
@@ -64,3 +57,36 @@ export default class Mes extends Component {
     }
 
 }
+
+
+
+
+const DiaSemana = styled.span`
+width: 14.28571428571429%;
+`
+const Dia = styled.span`
+    text-align: center;
+    width: 14.28571428571429%;
+`
+
+const SemanaDias = styled.span`
+display: inline-flex;
+    flex-direction: row;
+    width: 60%;
+    justify-content: space-between;
+`
+
+const DiasDoMes = styled.div`
+display:flex;
+flex-direction: column;
+align-content: center;
+padding: 10px;
+width: 60%;
+`
+
+
+const Semana = styled.div`
+    padding-bottom: 5px;
+    display:flex;
+    flex-direction: row;
+`
