@@ -21,7 +21,6 @@ export default class Mes extends Component {
     }
 
     render() {
-        console.log('render',this.props)
         const {semanas} =this.props.date.calendario;
         console.log(this.props)
         return (
@@ -62,11 +61,17 @@ export default class Mes extends Component {
 
 
 const DiaSemana = styled.span`
-width: 14.28571428571429%;
+width: 14.3%;
+    @media(max-width: 768px){
+        font-size: 50%;
+    }
 `
 const Dia = styled.span`
     text-align: center;
-    width: 14.28571428571429%;
+    width: 14.3%;
+    @media(max-width: 768px){
+        font-size: 50%;
+    }
 `
 
 const SemanaDias = styled.span`
