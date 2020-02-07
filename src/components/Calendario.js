@@ -25,7 +25,7 @@ export default class Calendario extends Component {
         this.setState({Animation: !this.state.Animation});
       },500)
       transicaoAnimation = 20*lado;
-      if(lado == -1 ) this.lado = "left"
+      if(lado === -1 ) this.lado = "left"
       else this.lado = "right";
 
       console.log(transicaoAnimation)
@@ -37,19 +37,28 @@ export default class Calendario extends Component {
       return (
         <React.Fragment>
     <Anos>
-
-      <Transition in={this.state.Animation} timeout={500}>
+    <Ano> 
+      <Transition in={!this.state.Animation} timeout={{
+       appear: 300,
+       enter: 300,
+       exit: 200,
+      }}
+      >
       {(state) => (
-          // state change: exited -> entering -> entered -> exiting -> exited
-          <Animation lado={this.lado} state={state}>Hello</Animation>
+          <Animation lado={this.lado} state={state}>
+             
+            {this.state.ano}
+          
+            </Animation>
         )}
       </Transition>
+      </Ano>
           <Ano onClick={()=>this.anoDirecao(-1)}>  &#8592; {this.state.ano-1}</Ano>
           <ReactCSSTransitionGroup
           transitionName="container"
           transitionEnterTimeout={500}
           transitionLeaveTimeout={500}>
-             {this.state.Animation ? <Container>TESTEANIMACAO</Container>: null}
+             {this.state.Animation ? <Container>{this.state.ano1}</Container>: null}
           </ReactCSSTransitionGroup>
              
       <ReactCSSTransitionGroup
