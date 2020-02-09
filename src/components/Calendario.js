@@ -28,7 +28,6 @@ export default class Calendario extends Component {
       if(lado === -1 ) this.lado = "left"
       else this.lado = "right";
 
-      console.log(transicaoAnimation)
     const {calendario} = this.date;
     this.date = mudaAno(this.state.ano+lado, calendario)
 
@@ -37,7 +36,16 @@ export default class Calendario extends Component {
       return (
         <React.Fragment>
     <Anos>
-    <Ano> 
+  
+          <Ano onClick={()=>this.anoDirecao(-1)}>  &#8592; {this.state.ano-1}</Ano>
+          <ReactCSSTransitionGroup
+          transitionName="container"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}>
+             {this.state.Animation ? <Container>{this.state.ano1}</Container>: null}
+          </ReactCSSTransitionGroup>
+             
+          <Ano> 
       <Transition in={!this.state.Animation} timeout={{
        appear: 300,
        enter: 300,
@@ -53,14 +61,6 @@ export default class Calendario extends Component {
         )}
       </Transition>
       </Ano>
-          <Ano onClick={()=>this.anoDirecao(-1)}>  &#8592; {this.state.ano-1}</Ano>
-          <ReactCSSTransitionGroup
-          transitionName="container"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={500}>
-             {this.state.Animation ? <Container>{this.state.ano1}</Container>: null}
-          </ReactCSSTransitionGroup>
-             
       <ReactCSSTransitionGroup
             transitionName="fade"
             transitionEnterTimeout={500}

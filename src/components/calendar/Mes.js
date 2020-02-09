@@ -12,7 +12,7 @@ export default class Mes extends Component {
     }
     resize() {
         this.setState({ 
-            lessLetter: window.innerWidth >= 760
+            lessLetter: true
         });
     }
 
@@ -22,7 +22,6 @@ export default class Mes extends Component {
 
     render() {
         const {semanas} =this.props.date.calendario;
-        console.log(this.props)
         return (
             <React.Fragment >
                 <section className="Meses">
@@ -39,10 +38,15 @@ export default class Mes extends Component {
                     <div className="grid">
                         <DiasDoMes>
                             {
-                                semanas.map( (item) => (
-                                        <Semana>
+                                semanas.map( (semana, semanaKey) => (
+
+                                    
+                                        <Semana key={semanaKey}> 
                                             {
-                                                item.dias.map(item =>  <Dia key={item.dia} >{item.dia}  </Dia> )
+                                                semana.dias.map((dia, diaKey) =>{
+                                                    return <Dia key={semanaKey+diaKey} >{dia.dia} </Dia>
+                                                }
+                                                       )
                                             }
                                         </Semana>
                                     )
@@ -63,15 +67,12 @@ export default class Mes extends Component {
 const DiaSemana = styled.span`
 width: 14.3%;
     @media(max-width: 768px){
-        font-size: 50%;
+        font-size: 90%;
     }
 `
 const Dia = styled.span`
     text-align: center;
     width: 14.3%;
-    @media(max-width: 768px){
-        font-size: 50%;
-    }
 `
 
 const SemanaDias = styled.span`

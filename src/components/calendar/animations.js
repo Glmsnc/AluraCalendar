@@ -6,9 +6,9 @@ export const Animation = styled.div`
 
     transform: translateX(
     ${({ lado, state }) => (lado === "right" && 
-    state==="entering" ? 75  
+    state==="entering" ? 25  
     :lado ==="left" && state==="entering"
-     ? 25 : 50)}vw
+     ? -25 : 0)}vw
   );
   }
   ;

@@ -28,7 +28,7 @@ function getMesPronto(data){
         if(dia === 1 && diaSemana !== 0){
             let i =0;
             while( i< diaSemana){
-                dias.push({dia:''});
+                dias.push({dia:' '});
                 i++;
             }
             dias.push({dia});
@@ -64,7 +64,6 @@ export function getCalendario(data){
 }
 
  export function mudaAno(ano, dataAnterior){
-     console.log('dataAnterior',dataAnterior)
    const novaData = new Date(dataAnterior);
    novaData.setYear(ano);
     return getCalendario(novaData);
