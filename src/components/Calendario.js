@@ -5,8 +5,6 @@ import styled from 'styled-components';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Transition } from "react-transition-group"
 import {Animation} from './calendar/animations'
-let transicaoAnimation = 0;
-
 export default class Calendario extends Component {
     
     constructor(){  
@@ -15,21 +13,21 @@ export default class Calendario extends Component {
        this.date = getCalendario(new Date());
         this.state = ({
             ano: this.date.ano,
-            Animation: true,
+            Animation: false,
           })
     }
     anoDirecao = (lado)=>{
+      
       this.setState({Animation: !this.state.Animation});
       setTimeout(()=>{
-        this.setState({ano:  this.state.ano +lado});
+        this.setState({ano:  this.date.ano+lado});
         this.setState({Animation: !this.state.Animation});
-      },500)
-      transicaoAnimation = 20*lado;
-      if(lado === -1 ) this.lado = "left"
-      else this.lado = "right";
+      },1000)
+      if(lado === -1 ) this.lado = "esquerda";
+      else this.lado = "direita";
 
-    const {calendario} = this.date;
-    this.date = mudaAno(this.state.ano+lado, calendario)
+    const {dataCompleta} = this.date;
+    this.date = mudaAno(dataCompleta.getMonth()+lado, dataCompleta)
 
     } 
     render() {
@@ -37,16 +35,10 @@ export default class Calendario extends Component {
         <React.Fragment>
     <Anos>
   
-          <Ano onClick={()=>this.anoDirecao(-1)}>  &#8592; {this.state.ano-1}</Ano>
-          <ReactCSSTransitionGroup
-          transitionName="container"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={500}>
-             {this.state.Animation ? <Container>{this.state.ano1}</Container>: null}
-          </ReactCSSTransitionGroup>
-             
+          <Ano onClick={()=>this.anoDirecao(-1)}>  &#8592;</Ano>
+       
           <Ano> 
-      <Transition in={!this.state.Animation} timeout={{
+      <Transition in={this.state.Animation} timeout={{
        appear: 300,
        enter: 300,
        exit: 200,
@@ -54,8 +46,7 @@ export default class Calendario extends Component {
       >
       {(state) => (
           <Animation lado={this.lado} state={state}>
-             
-            {this.state.ano}
+         {this.date.calendario.mes} de {this.date.ano}
           
             </Animation>
         )}
@@ -67,9 +58,9 @@ export default class Calendario extends Component {
             transitionLeaveTimeout={500}>
           </ReactCSSTransitionGroup>
 
-              <Ano  onClick={()=>this.anoDirecao(+1)}> {this.state.ano+1}&#8594;</Ano>
+              <Ano  onClick={()=>this.anoDirecao(+1)}> &#8594;</Ano>
           </Anos>
-              <Mes date={this.date}/>
+              <Mes date={this.date} animation={this.state.Animation} lado={this.lado}/>
         </React.Fragment>
       )
     }
@@ -92,8 +83,11 @@ const Anos = styled.div`
   width:  100%;
   justify-content:center;
 `
+/*
 
-const Container = styled.section`
+let transicaoAnimation = 0;
+
+const anim = styled.section`
 font-size: 1.5em;
 padding: 0;
 margin: 0;
@@ -120,4 +114,4 @@ transition: opacity 300ms ease-in;
     transition: opacity 300ms ease-in;
     transform: translateX('${transicaoAnimation}'px);
   }
-`;
+`;*/

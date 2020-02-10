@@ -1,37 +1,37 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
 import {diasDaSemana} from '../../controller/calendarController';
+import {CalendarioMes} from './animations';
+
+import { Transition } from "react-transition-group"
 import './style.css';
 
 export default class Mes extends Component {
-    constructor(){
-        super()
-        this.state = { 
-            lessLetter: window.innerWidth >= 760
-        }
-    }
-    resize() {
-        this.setState({ 
-            lessLetter: true
-        });
-    }
-
-    componentDidMount(){
-        window.addEventListener("resize", this.resize.bind(this));
-    }
+    
+    
 
     render() {
         const {semanas} =this.props.date.calendario;
+        const {animation} = this.props;
+        const {lado}  = this.props;
         return (
             <React.Fragment >
-                <section className="Meses">
-                <h1>{this.props.date.calendario.mes}</h1>
-                </section>
+                  <Transition in={animation} timeout={{
+       appear: 300,
+       enter: 500,
+       exit: 500,
+      }}
+      >
+           {(state) => (
+               
+                <CalendarioMes lado={lado} state={state}>
                 <section className="calendario-mes">
                     <div className="grid">
                         <SemanaDias>
                             {   
-                                diasDaSemana.map( diaSemana => <DiaSemana key={diaSemana}>{ this.state.lessLetter ? diaSemana : diaSemana.substring(0,3)} </DiaSemana>) 
+                                diasDaSemana.map( diaSemana =>{
+                                   return <DiaSemana key={diaSemana}>{  diaSemana} </DiaSemana>
+                                } )
                             }
                         </SemanaDias>
                     </div>
@@ -55,6 +55,9 @@ export default class Mes extends Component {
                         </DiasDoMes>
                     </div>
                 </section>
+                </CalendarioMes>
+           )}
+                </Transition>
             </React.Fragment>
       )
     }

@@ -60,12 +60,19 @@ function dateToObj(data){
 
 export function getCalendario(data){
     const calendario = getMesPronto(data);
-    return {ano: data.getFullYear(), calendario}
+    return {ano: data.getFullYear(), calendario, dataCompleta: data}
 }
 
+/*
  export function mudaAno(ano, dataAnterior){
    const novaData = new Date(dataAnterior);
    novaData.setYear(ano);
     return getCalendario(novaData);
  }
-
+*/
+ 
+ export function mudaAno(mes, mesAnterior){
+    const novaData = new Date(mesAnterior);
+    novaData.setMonth(mes);
+     return getCalendario(novaData);
+  }
