@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Mes from './calendar/Mes'
-import {getCalendario, mudaAno} from '../controller/calendarController';
+import {getCalendario, mudaMes} from '../controller/calendarController';
 import styled from 'styled-components';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Transition } from "react-transition-group"
@@ -16,18 +16,17 @@ export default class Calendario extends Component {
             Animation: false,
           })
     }
-    anoDirecao = (lado)=>{
+    mesDirecao = (lado)=>{
       
       this.setState({Animation: !this.state.Animation});
       setTimeout(()=>{
-        this.setState({ano:  this.date.ano+lado});
         this.setState({Animation: !this.state.Animation});
       },1000)
       if(lado === -1 ) this.lado = "esquerda";
       else this.lado = "direita";
 
     const {dataCompleta} = this.date;
-    this.date = mudaAno(dataCompleta.getMonth()+lado, dataCompleta)
+    this.date = mudaMes(dataCompleta.getMonth()+lado, dataCompleta)
 
     } 
     render() {
@@ -35,7 +34,7 @@ export default class Calendario extends Component {
         <React.Fragment>
     <Anos>
   
-          <Ano onClick={()=>this.anoDirecao(-1)}>  &#8592;</Ano>
+          <Ano onClick={()=>this.mesDirecao(-1)}>  &#8592;</Ano>
        
           <Ano> 
       <Transition in={this.state.Animation} timeout={{
@@ -58,7 +57,7 @@ export default class Calendario extends Component {
             transitionLeaveTimeout={500}>
           </ReactCSSTransitionGroup>
 
-              <Ano  onClick={()=>this.anoDirecao(+1)}> &#8594;</Ano>
+              <Ano  onClick={()=>this.mesDirecao(+1)}> &#8594;</Ano>
           </Anos>
               <Mes date={this.date} animation={this.state.Animation} lado={this.lado}/>
         </React.Fragment>

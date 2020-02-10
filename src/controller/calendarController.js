@@ -71,7 +71,7 @@ export function getCalendario(data){
  }
 */
  
- export function mudaAno(mes, mesAnterior){
+ export function mudaMes(mes, mesAnterior){
     const novaData = new Date(mesAnterior);
     novaData.setMonth(mes);
      return getCalendario(novaData);
