@@ -51,11 +51,6 @@ export default class Calendario extends Component {
         )}
       </Transition>
       </Ano>
-      <ReactCSSTransitionGroup
-            transitionName="fade"
-            transitionEnterTimeout={500}
-            transitionLeaveTimeout={500}>
-          </ReactCSSTransitionGroup>
 
               <Ano  onClick={()=>this.mesDirecao(+1)}> &#8594;</Ano>
           </Anos>
